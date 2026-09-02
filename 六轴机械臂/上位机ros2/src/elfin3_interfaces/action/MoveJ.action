@@ -1,0 +1,21 @@
+# Goal: joint positions follow the fixed J1-to-J6 order defined by the contract.
+float64[6] joint_positions
+# A value of 0.0 selects the node default; otherwise the valid range is (0.0, 1.0].
+float64 velocity_scaling
+float64 acceleration_scaling
+---
+# Module result codes. moveit_error_code is 0 when MoveIt was not called.
+uint8 SUCCESS=0
+uint8 NOT_READY=1
+uint8 INVALID_GOAL=2
+uint8 PLANNING_FAILED=3
+uint8 EXECUTION_FAILED=4
+uint8 CANCELED=5
+uint8 INTERNAL_ERROR=6
+
+uint8 result_code
+int32 moveit_error_code
+string message
+---
+# One of VALIDATING, PLANNING, EXECUTING, or STOPPING.
+string stage

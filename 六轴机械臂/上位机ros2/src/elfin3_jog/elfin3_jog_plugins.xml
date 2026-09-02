@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<library path="elfin3_jog_controller">
+  <class
+    name="elfin3_jog/Elfin3JogController"
+    type="elfin3_jog::Elfin3JogController"
+    base_class_type="controller_interface::ControllerInterface">
+    <description>Six-axis position jog controller for Elfin3.</description>
+  </class>
+</library>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<robot name="elfin3">
+  <group name="elfin_arm">
+    <chain base_link="elfin_base" tip_link="elfin_end_link"/>
+  </group>
+
+  <group_state name="home" group="elfin_arm">
+    <joint name="elfin_joint1" value="0"/>
+    <joint name="elfin_joint2" value="0"/>
+    <joint name="elfin_joint3" value="0"/>
+    <joint name="elfin_joint4" value="0"/>
+    <joint name="elfin_joint5" value="0"/>
+    <joint name="elfin_joint6" value="0"/>
+  </group_state>
+
+  <disable_collisions link1="elfin_base" link2="elfin_link1" reason="Adjacent"/>
+  <disable_collisions link1="elfin_link1" link2="elfin_link2" reason="Adjacent"/>
+  <disable_collisions link1="elfin_link2" link2="elfin_link3" reason="Adjacent"/>
+  <disable_collisions link1="elfin_link3" link2="elfin_link4" reason="Adjacent"/>
+  <disable_collisions link1="elfin_link4" link2="elfin_link5" reason="Adjacent"/>
+  <disable_collisions link1="elfin_link5" link2="elfin_link6" reason="Adjacent"/>
+</robot>

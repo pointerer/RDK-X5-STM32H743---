@@ -1,0 +1,67 @@
+controller_manager:
+  ros__parameters:
+    # Keep command production below the independent 500 Hz CSP transmitter so
+    # queued trajectory samples do not accumulate over long motions.
+    update_rate: 500
+    # MoveIt 轨迹控制器：使用 ROS 2 Controllers 提供的标准关节轨迹控制器插件。
+    elfin_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    # Elfin3 Jog 控制器：使用本项目实现的六轴关节 Jog 控制器插件。
+    elfin_jog_controller:
+      type: elfin3_jog/Elfin3JogController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+elfin_arm_controller:
+  # 传递给 JointTrajectoryController 插件的 ROS 2 参数。
+  ros__parameters:
+    # 控制器管理的关节及其固定顺序。
+    joints:
+      - elfin_joint1  
+      - elfin_joint2  
+      - elfin_joint3  
+      - elfin_joint4  
+      - elfin_joint5  
+      - elfin_joint6  
+    # 向 ros2_control 硬件接口写入关节位置指令。
+    command_interfaces:
+      - position  # 位置命令接口，单位为 rad。
+    # 从 ros2_control 硬件接口读取关节位置反馈。
+    state_interfaces:
+      - position  # 位置状态接口，单位为 rad。
+      
+    # 控制器状态消息的发布频率，单位为 Hz。
+    state_publish_rate: 100.0
+    # FollowJointTrajectory Action 状态的监视频率，单位为 Hz。
+    action_monitor_rate: 20.0
+    # 不允许只指定部分关节，轨迹目标必须包含上述全部六个关节。
+    allow_partial_joints_goal: false
+    # 不允许轨迹终点速度非零，要求机械臂在轨迹末端停止。
+    allow_nonzero_velocity_at_trajectory_end: false
+    # 轨迹执行期间和到达目标时的误差容限。
+    constraints:
+      # 允许超过轨迹计划结束时间继续收敛到目标的最长时间，单位为 s。
+      goal_time: 1.0
+      # trajectory 为执行中的位置误差上限，goal 为终点位置误差上限，单位均为 rad。
+      elfin_joint1: {trajectory: 0.2, goal: 0.01}  # 1 轴误差容限。
+      elfin_joint2: {trajectory: 0.2, goal: 0.01}  # 2 轴误差容限。
+      elfin_joint3: {trajectory: 0.2, goal: 0.01}  # 3 轴误差容限。
+      elfin_joint4: {trajectory: 0.2, goal: 0.01}  # 4 轴误差容限。
+      elfin_joint5: {trajectory: 0.2, goal: 0.01}  # 5 轴误差容限。
+      elfin_joint6: {trajectory: 0.2, goal: 0.01}  # 6 轴误差容限。
+
+elfin_jog_controller:
+  # 传递给 Elfin3JogController 插件的 ROS 2 参数。
+  ros__parameters:
+    # 1～6 轴的关节位置下限，数组顺序与 elfin_joint1～elfin_joint6 一致，单位为 rad。
+    lower_limits: [-3.14, -2.35, -2.61, -3.14, -2.56, -3.14]
+    # 1～6 轴的关节位置上限，数组顺序与 elfin_joint1～elfin_joint6 一致，单位为 rad。
+    upper_limits: [3.14, 2.35, 2.61, 3.14, 2.56, 3.14]
+    # 在上下限内侧预留的安全裕量；实际 Jog 范围为 [下限+裕量, 上限-裕量]，单位为 rad。
+    soft_limit_margin_rad: 0.01
+    # 指令目标位置与关节反馈位置的最大允许偏差，超过后锁存跟随误差故障，单位为 rad。
+    following_error_limit_rad: 0.05
+    # JogCommand 的最大允许消息间隔，超时后锁存命令超时故障，单位为 s。
+    command_timeout_sec: 0.50

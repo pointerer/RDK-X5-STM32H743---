@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot name="elfin3" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find elfin_description)/urdf/materials.xacro" />
+
+  <xacro:include filename="$(find elfin_description)/urdf/elfin3_macro.xacro" />
+
+  <xacro:elfin3_robot />
+
+</robot>

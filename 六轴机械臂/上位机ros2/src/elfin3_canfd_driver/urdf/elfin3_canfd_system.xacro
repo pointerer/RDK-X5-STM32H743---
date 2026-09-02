@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="elfin3_canfd_system" params="can_interface:=can0">
+    <ros2_control name="Elfin3CanFdSystem" type="system">
+      <hardware>
+        <plugin>elfin3_canfd_driver/Elfin3CanFdSystem</plugin>
+        <param name="interface_name">${can_interface}</param>
+        <param name="joint_zero_offset_counts">226000,260000,1666230,1960000,1713600,2890000</param>
+        <param name="joint_direction_signs">-1,-1,-1,-1,-1,-1</param>
+        <param name="position_warning_timeout_ms">20</param>
+        <param name="position_timeout_ms">50</param>
+        <param name="communication_error_grace_ms">300</param>
+        <param name="detailed_timeout_ms">100</param>
+        <param name="heartbeat_timeout_ms">300</param>
+        <param name="trajectory_status_timeout_ms">100</param>
+        <param name="activation_timeout_ms">3000</param>
+        <param name="csp_period_us">2000</param>
+        <param name="csp_target_timeout_ms">100</param>
+        <param name="csp_validity_ms">40</param>
+        <param name="csp_refill_period_us">1000</param>
+        <param name="csp_remote_low_watermark">10</param>
+        <param name="csp_remote_high_watermark">13</param>
+        <param name="csp_thread_priority">60</param>
+      </hardware>
+
+      <joint name="elfin_joint1">
+        <command_interface name="position">
+          <param name="min">-3.14</param>
+          <param name="max">3.14</param>
+        </command_interface>
+        <state_interface name="position" />
+      </joint>
+      <joint name="elfin_joint2">
+        <command_interface name="position">
+          <param name="min">-2.35</param>
+          <param name="max">2.35</param>
+        </command_interface>
+        <state_interface name="position" />
+      </joint>
+      <joint name="elfin_joint3">
+        <command_interface name="position">
+          <param name="min">-2.61</param>
+          <param name="max">2.61</param>
+        </command_interface>
+        <state_interface name="position" />
+      </joint>
+      <joint name="elfin_joint4">
+        <command_interface name="position">
+          <param name="min">-3.14</param>
+          <param name="max">3.14</param>
+        </command_interface>
+        <state_interface name="position" />
+      </joint>
+      <joint name="elfin_joint5">
+        <command_interface name="position">
+          <param name="min">-2.56</param>
+          <param name="max">2.56</param>
+        </command_interface>
+        <state_interface name="position" />
+      </joint>
+      <joint name="elfin_joint6">
+        <command_interface name="position">
+          <param name="min">-3.14</param>
+          <param name="max">3.14</param>
+        </command_interface>
+        <state_interface name="position" />
+      </joint>
+    </ros2_control>
+  </xacro:macro>
+
+</robot>

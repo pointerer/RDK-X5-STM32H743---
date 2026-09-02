@@ -1,0 +1,9 @@
+h743_ecathost\app_eth_debug.o: ../App/Src/app_eth_debug.c
+h743_ecathost\app_eth_debug.o: ../App/Inc/app_eth_debug.h
+h743_ecathost\app_eth_debug.o: D:\Keil_v5\Core\ARM\ARMCC\Bin\..\include\stdint.h
+h743_ecathost\app_eth_debug.o: ../App/Inc/app_uart_log.h
+h743_ecathost\app_eth_debug.o: ../BSP/Inc/bsp_eth_raw.h
+h743_ecathost\app_eth_debug.o: ../BSP/Inc/bsp_lan8720.h
+h743_ecathost\app_eth_debug.o: D:\Keil_v5\Core\ARM\ARMCC\Bin\..\include\stddef.h
+h743_ecathost\app_eth_debug.o: D:\Keil_v5\Core\ARM\ARMCC\Bin\..\include\stdio.h
+h743_ecathost\app_eth_debug.o: D:\Keil_v5\Core\ARM\ARMCC\Bin\..\include\string.h

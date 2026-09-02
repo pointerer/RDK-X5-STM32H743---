@@ -1,0 +1,38 @@
+# Velocity limits come from the canonical Elfin3 URDF.
+# Acceleration limits are conservative simulation defaults because no
+# manufacturer acceleration data is available yet. Replace them before
+# connecting MoveIt to real hardware.
+default_velocity_scaling_factor: 0.2
+default_acceleration_scaling_factor: 0.2
+
+joint_limits:
+  elfin_joint1:
+    has_velocity_limits: true
+    max_velocity: 1.57
+    has_acceleration_limits: true
+    max_acceleration: 1.0
+  elfin_joint2:
+    has_velocity_limits: true
+    max_velocity: 1.27
+    has_acceleration_limits: true
+    max_acceleration: 1.0
+  elfin_joint3:
+    has_velocity_limits: true
+    max_velocity: 1.57
+    has_acceleration_limits: true
+    max_acceleration: 1.0
+  elfin_joint4:
+    has_velocity_limits: true
+    max_velocity: 1.57
+    has_acceleration_limits: true
+    max_acceleration: 1.0
+  elfin_joint5:
+    has_velocity_limits: true
+    max_velocity: 1.57
+    has_acceleration_limits: true
+    max_acceleration: 1.0
+  elfin_joint6:
+    has_velocity_limits: true
+    max_velocity: 1.57
+    has_acceleration_limits: true
+    max_acceleration: 1.0

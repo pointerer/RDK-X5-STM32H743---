@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot name="elfin3" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:arg name="can_interface" default="can0" />
+
+  <xacro:include filename="$(find elfin_description)/urdf/materials.xacro" />
+  <xacro:include filename="$(find elfin_description)/urdf/elfin3_macro.xacro" />
+  <xacro:include filename="$(find elfin3_canfd_driver)/urdf/elfin3_canfd_system.xacro" />
+
+  <xacro:elfin3_robot />
+  <xacro:elfin3_canfd_system can_interface="$(arg can_interface)" />
+
+</robot>

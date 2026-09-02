@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot name="elfin3" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:arg name="use_fake_hardware" default="false" />
+
+  <xacro:include filename="$(find elfin_description)/urdf/materials.xacro" />
+  <xacro:include filename="$(find elfin_description)/urdf/elfin3_macro.xacro" />
+  <xacro:include filename="$(find elfin3_ros2_gazebo)/urdf/elfin3_gazebo.xacro" />
+
+  <xacro:elfin3_robot />
+
+  <xacro:elfin3_gazebo
+    use_fake_hardware="$(arg use_fake_hardware)" />
+
+</robot>

@@ -1,0 +1,239 @@
+# Reviewed real-hardware A/B dataset. All poses are expressed in elfin_base.
+# Re-run the operator workspace and collision review after any target change.
+base_frame: elfin_base
+tool_frame: elfin_end_link
+
+# Required positive TCP Y boundary in metres. This encodes y>0 and clearance
+# from the X axis. Do not copy a guessed value from another installation.
+y_safe_min_m: 0.05
+y_safety_margin_m: 0.0
+
+# Required positive joint interpolation step used for pre-execution FK checks.
+workspace_fk_sample_max_joint_step_rad: 0.03
+
+execution_mode: real
+# Explicit operator authorization for the reviewed real-hardware dataset.
+allow_real_motion: true
+velocity_scaling: 0.2
+acceleration_scaling: 0.2
+repetitions: 3
+
+# The real JointTrajectoryController and CAN FD hardware interface both use a
+# 0.010 rad terminal tolerance. Add a bounded 0.001 rad observation guard band
+# for the 100 Hz published state; every measured start delta remains recorded.
+# This still rejects the previously observed 0.01684 rad alternate-IK solution.
+q0_tolerance_rad: 0.011
+# Independent stationarity criterion over the complete settle window. A stable
+# q0 mismatch receives exactly one MoveJ retry; continued motion never does.
+q0_motion_span_tolerance_rad: 0.001
+q0_settle_sec: 0.5
+q0_wait_timeout_sec: 15.0
+supervisor_wait_timeout_sec: 15.0
+action_timeout_sec: 60.0
+metrics_timeout_sec: 2.0
+joint_state_timeout_sec: 0.5
+tf_lookup_timeout_sec: 0.05
+safety_poll_period_sec: 0.02
+
+auto_reset_to_start: true
+# The initial reset uses MovePose to establish the safe Cartesian start and
+# capture its measured six-joint q0. Every later reset uses MoveJ to return to
+# exactly that q0, avoiding a different IK solution for the same Cartesian pose.
+reset_algorithm: move_j
+
+start_pose:
+  frame_id: elfin_base
+  position: [-0.104, 0.443, 0.228]
+  orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+
+# Freeze this list before collecting results. Use identical targets for A/B.
+# Bounds supplied by the operator are absolute in elfin_base:
+# X [-0.50, 0.50] m, Y [0.0005, 0.50] m, Z [0.05, 0.30] m.
+# The software Y guard is stricter (Y >= 0.05 m). These targets deliberately
+# stay away from every supplied boundary and use only small orientation changes.
+targets:
+  # Ten local translations with the measured start orientation.
+  - id: ordinary_01
+    category: ordinary
+    pose:
+      frame_id: elfin_base
+      position: [-0.16, 0.40, 0.20]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: ordinary_02
+    category: ordinary
+    pose:
+      frame_id: elfin_base
+      position: [-0.12, 0.40, 0.24]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: ordinary_03
+    category: ordinary
+    pose:
+      frame_id: elfin_base
+      position: [-0.08, 0.40, 0.20]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: ordinary_04
+    category: ordinary
+    pose:
+      frame_id: elfin_base
+      position: [-0.04, 0.40, 0.24]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: ordinary_05
+    category: ordinary
+    pose:
+      frame_id: elfin_base
+      position: [-0.16, 0.44, 0.24]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: ordinary_06
+    category: ordinary
+    pose:
+      frame_id: elfin_base
+      position: [-0.12, 0.44, 0.18]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: ordinary_07
+    category: ordinary
+    pose:
+      frame_id: elfin_base
+      position: [-0.08, 0.44, 0.26]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: ordinary_08
+    category: ordinary
+    pose:
+      frame_id: elfin_base
+      position: [-0.04, 0.44, 0.20]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: ordinary_09
+    category: ordinary
+    pose:
+      frame_id: elfin_base
+      position: [-0.14, 0.48, 0.20]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: ordinary_10
+    category: ordinary
+    pose:
+      frame_id: elfin_base
+      position: [-0.06, 0.48, 0.24]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+
+  # Ten larger translations, still inside the central reviewed region.
+  - id: translation_01
+    category: translation
+    pose:
+      frame_id: elfin_base
+      position: [-0.22, 0.34, 0.16]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: translation_02
+    category: translation
+    pose:
+      frame_id: elfin_base
+      position: [-0.22, 0.42, 0.26]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: translation_03
+    category: translation
+    pose:
+      frame_id: elfin_base
+      position: [-0.18, 0.30, 0.22]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: translation_04
+    category: translation
+    pose:
+      frame_id: elfin_base
+      position: [-0.10, 0.32, 0.28]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: translation_05
+    category: translation
+    pose:
+      frame_id: elfin_base
+      position: [-0.02, 0.34, 0.16]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: translation_06
+    category: translation
+    pose:
+      frame_id: elfin_base
+      position: [0.04, 0.38, 0.24]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: translation_07
+    category: translation
+    pose:
+      frame_id: elfin_base
+      position: [0.08, 0.42, 0.18]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: translation_08
+    category: translation
+    pose:
+      frame_id: elfin_base
+      position: [0.10, 0.46, 0.26]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: translation_09
+    category: translation
+    pose:
+      frame_id: elfin_base
+      position: [-0.24, 0.46, 0.18]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+  - id: translation_10
+    category: translation
+    pose:
+      frame_id: elfin_base
+      position: [0.02, 0.48, 0.22]
+      orientation: [0.786043627, 0.618034302, -0.005000278, 0.012000666]
+
+  # Ten small orientation variations about safe central positions.
+  - id: orientation_01
+    category: orientation
+    pose:
+      frame_id: elfin_base
+      position: [-0.14, 0.40, 0.22]
+      orientation: [0.859988579, 0.510147651, -0.006523901, 0.011245332]
+  - id: orientation_02
+    category: orientation
+    pose:
+      frame_id: elfin_base
+      position: [-0.14, 0.40, 0.22]
+      orientation: [0.698649250, 0.715346214, -0.003391098, 0.012550666]
+  - id: orientation_03
+    category: orientation
+    pose:
+      frame_id: elfin_base
+      position: [-0.08, 0.42, 0.24]
+      orientation: [0.836917732, 0.547174279, -0.006027177, 0.011519197]
+  - id: orientation_04
+    category: orientation
+    pose:
+      frame_id: elfin_base
+      position: [-0.08, 0.42, 0.24]
+      orientation: [0.729187255, 0.684190711, -0.003935323, 0.012390803]
+  - id: orientation_05
+    category: orientation
+    pose:
+      frame_id: elfin_base
+      position: [-0.12, 0.46, 0.20]
+      orientation: [0.785513596, 0.616922608, 0.029291223, 0.038947522]
+  - id: orientation_06
+    category: orientation
+    pose:
+      frame_id: elfin_base
+      position: [-0.12, 0.46, 0.20]
+      orientation: [0.785077378, 0.617969532, -0.039282260, -0.014969034]
+  - id: orientation_07
+    category: orientation
+    pose:
+      frame_id: elfin_base
+      position: [-0.04, 0.40, 0.20]
+      orientation: [0.784772026, 0.617227961, -0.031953796, 0.046275986]
+  - id: orientation_08
+    category: orientation
+    pose:
+      frame_id: elfin_base
+      position: [-0.04, 0.40, 0.20]
+      orientation: [0.785818949, 0.617664179, 0.021962759, -0.022297497]
+  - id: orientation_09
+    category: orientation
+    pose:
+      frame_id: elfin_base
+      position: [-0.16, 0.44, 0.26]
+      orientation: [0.881422388, 0.472149929, -0.007008206, 0.010950060]
+  - id: orientation_10
+    category: orientation
+    pose:
+      frame_id: elfin_base
+      position: [-0.16, 0.44, 0.26]
+      orientation: [0.666781327, 0.745140015, -0.002840418, 0.012686638]

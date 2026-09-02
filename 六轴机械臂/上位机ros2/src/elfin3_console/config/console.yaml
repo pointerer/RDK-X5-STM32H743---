@@ -1,0 +1,13 @@
+elfin3_console:
+  ros__parameters:
+    base_frame: elfin_base
+    tool_frame: elfin_end_link
+    joint_state_timeout_sec: 0.5
+    tf_timeout_sec: 0.5
+    tf_lookup_timeout_sec: 0.05
+    diagnostics_timeout_sec: 2.0
+    supervisor_timeout_sec: 0.5
+    action_server_timeout_sec: 0.5
+    stop_service_timeout_sec: 0.5
+    input_poll_timeout_ms: 100
+    terminal_output: true

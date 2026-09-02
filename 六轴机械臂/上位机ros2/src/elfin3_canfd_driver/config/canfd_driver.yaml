@@ -1,0 +1,11 @@
+elfin3_canfd_driver:
+  ros__parameters:
+    # Values are stored in ROS joint order: joint1 through joint6.
+    joint_zero_offset_counts: [226000, 260000, 1666230, 1960000, 1713600, 2890000]
+    # Positive ROS joint motion matches decreasing encoder counts on all six joints.
+    joint_direction_signs: [-1, -1, -1, -1, -1, -1]
+    trajectory_status_timeout_ms: 100
+    csp_refill_period_us: 1000
+    csp_remote_low_watermark: 10
+    csp_remote_high_watermark: 13
+    csp_thread_priority: 60

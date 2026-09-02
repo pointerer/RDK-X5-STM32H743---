@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<library path="elfin3_canfd_system">
+  <class
+    name="elfin3_canfd_driver/Elfin3CanFdSystem"
+    type="elfin3_canfd::Elfin3CanFdSystem"
+    base_class_type="hardware_interface::SystemInterface">
+    <description>Elfin3 SocketCAN CAN FD ros2_control system interface.</description>
+  </class>
+</library>

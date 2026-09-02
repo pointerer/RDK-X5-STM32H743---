@@ -1,0 +1,4 @@
+Load "H743_EcatHost\\H743_EcatHost.axf" 
+Erase Done.Programming Done.Verify OK.Application running ...
+Cannot access Memory (@ 0xe000edf0, Read, Acc Size: 4 Byte)
+Flash Load finished at 17:14:01

@@ -1,0 +1,39 @@
+elfin3_motion_command:
+  ros__parameters:
+    planning_group: elfin_arm
+    base_frame: elfin_base
+    tool_frame: elfin_end_link
+    planning_pipeline: ompl
+    planning_time_sec: 5.0
+    planning_attempts: 10
+    default_velocity_scaling: 0.2
+    default_acceleration_scaling: 0.2
+    joint_tolerance_rad: 0.01
+    position_tolerance_m: 0.005
+    orientation_tolerance_rad: 0.02
+    # Existing MovePose applies this limit from its captured start to every
+    # planned waypoint. MovePosePTP applies it to a direct IK candidate, each
+    # consecutive segmented-IK solution, and adjacent planned trajectory
+    # points, allowing a larger total move without accepting discontinuities.
+    move_pose_max_joint_delta_rad: 1.0
+    # MovePosePTP subdivides position and orientation independently, then uses
+    # the larger required segment count. Intermediate IK points select a
+    # continuous branch only; they are not sent to the trajectory controller.
+    move_pose_ptp_ik_translation_step_m: 0.05
+    move_pose_ptp_ik_rotation_step_rad: 0.17453292519943295
+    move_pose_ptp_max_ik_segments: 100
+    supervisor_timeout_sec: 0.5
+    # Disabled for simulation. The real bringup overrides this to true.
+    canfd_hold_on_cancel: false
+    canfd_hold_service: /elfin3_canfd/hold
+    # The Elfin3 installation used by this project may only operate in the
+    # positive-Y half-space and must keep clear of the X axis. No distance is
+    # guessed here: enable the guard only after entering a measured positive
+    # TCP Y boundary in elfin_base.
+    workspace_y_constraint_enabled: true
+    workspace_min_tcp_y_m: 0.05
+    workspace_y_margin_m: 0.0
+    # Required and strictly positive when the guard is enabled. The validator
+    # interpolates adjacent joint-trajectory waypoints by this maximum joint
+    # increment and checks TCP Y using FK before execution.
+    workspace_fk_sample_max_joint_step_rad: 0.03

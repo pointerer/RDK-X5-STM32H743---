@@ -1,0 +1,17 @@
+h743_ecathost\ec_soe.o: ..\Middlewares\SOEM\src\ec_soe.c
+h743_ecathost\ec_soe.o: ../Middlewares/SOEM/inc/soem/soem.h
+h743_ecathost\ec_soe.o: ../Middlewares/SOEM/inc/soem/ec_options.h
+h743_ecathost\ec_soe.o: ../Middlewares/SOEM/inc/soem/ec_type.h
+h743_ecathost\ec_soe.o: ../Middlewares/SOEM/osal/osal.h
+h743_ecathost\ec_soe.o: D:\Keil_v5\Core\ARM\ARMCC\Bin\..\include\stdint.h
+h743_ecathost\ec_soe.o: ../Middlewares/SOEM/oshw/nicdrv.h
+h743_ecathost\ec_soe.o: ../Middlewares/SOEM/inc/soem/ec_base.h
+h743_ecathost\ec_soe.o: ../Middlewares/SOEM/inc/soem/ec_main.h
+h743_ecathost\ec_soe.o: ../Middlewares/SOEM/inc/soem/ec_dc.h
+h743_ecathost\ec_soe.o: ../Middlewares/SOEM/inc/soem/ec_coe.h
+h743_ecathost\ec_soe.o: ../Middlewares/SOEM/inc/soem/ec_foe.h
+h743_ecathost\ec_soe.o: ../Middlewares/SOEM/inc/soem/ec_soe.h
+h743_ecathost\ec_soe.o: ../Middlewares/SOEM/inc/soem/ec_eoe.h
+h743_ecathost\ec_soe.o: ../Middlewares/SOEM/inc/soem/soem.h
+h743_ecathost\ec_soe.o: ../Middlewares/SOEM/inc/soem/ec_config.h
+h743_ecathost\ec_soe.o: ../Middlewares/SOEM/inc/soem/ec_print.h

@@ -1,0 +1,48 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 500
+
+    elfin_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    elfin_jog_controller:
+      type: elfin3_jog/Elfin3JogController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+elfin_arm_controller:
+  ros__parameters:
+    joints:
+     - elfin_joint1
+     - elfin_joint2
+     - elfin_joint3
+     - elfin_joint4
+     - elfin_joint5
+     - elfin_joint6
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    allow_nonzero_velocity_at_trajectory_end: false
+    constraints:
+      stopped_velocity_tolerance: 0.01
+      goal_time: 1.0
+      elfin_joint1: { trajectory: 0.2, goal: 0.01 }
+      elfin_joint2: { trajectory: 0.2, goal: 0.01 }
+      elfin_joint3: { trajectory: 0.2, goal: 0.01 }
+      elfin_joint4: { trajectory: 0.2, goal: 0.01 }
+      elfin_joint5: { trajectory: 0.2, goal: 0.01 }
+      elfin_joint6: { trajectory: 0.2, goal: 0.01 }
+
+elfin_jog_controller:
+  ros__parameters:
+    lower_limits: [-3.14, -2.35, -2.61, -3.14, -2.56, -3.14]
+    upper_limits: [3.14, 2.35, 2.61, 3.14, 2.56, 3.14]
+    soft_limit_margin_rad: 0.01
+    following_error_limit_rad: 0.05
+    command_timeout_sec: 0.05
